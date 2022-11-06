@@ -16,6 +16,8 @@
 
 package com.example.bot.spring.echo;
 
+import java.text.MessageFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -41,9 +43,12 @@ public class EchoApplication {
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         log.info("event: " + event);
-        //final String originalMessageText = event.getMessage().getText();
-        final String originalMessageText = "テストようです";
-        return new TextMessage(originalMessageText);
+        if(message.type == "image"){
+            //final String originalMessageText = event.getMessage().getText();
+            final String originalMessageText = "テストようです";
+            return new TextMessage(originalMessageText);
+        }
+        
     }
 
     @EventMapping
