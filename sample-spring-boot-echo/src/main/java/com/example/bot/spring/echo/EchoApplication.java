@@ -43,17 +43,16 @@ public class EchoApplication {
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         log.info("event: " + event);
-        TextMessageContent userMessageType = event.getMessage().getType();
-        TextMessageContent userMessage = event.getMessage().getText();
-        if(userMessageType == "text"){
+
+        TextMessageContent userMessage = event.getMessage();
+        String resMessage = userMessage.getText();
+        if(resMessage == "あ"){
             //final String originalMessageText = event.getMessage().getText();
             //final String originalMessageText = "テストようです";
-            return new TextMessage(userMessage);
-        }else if(userMessageType == "image"){
-            return new TextMessage("画像は無理");
+            resMessage = "あいうえお";
         }
         //return new TextMessage(originalMessageText);
-        
+        return new TextMessage(resMessage);
     }
 
     @EventMapping
