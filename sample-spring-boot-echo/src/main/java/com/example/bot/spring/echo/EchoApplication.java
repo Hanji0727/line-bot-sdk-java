@@ -40,7 +40,10 @@ public class EchoApplication {
         SpringApplication.run(EchoApplication.class, args);
     }
 
-    
+    @Override
+    protected ReplyMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event){
+        return new ReplyMessage(event.getReplyToken(), Arrays.asList(new TextMessage("画像を送ってね")));
+    }
 
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
