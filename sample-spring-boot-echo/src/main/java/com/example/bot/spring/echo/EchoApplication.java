@@ -40,10 +40,7 @@ public class EchoApplication {
         SpringApplication.run(EchoApplication.class, args);
     }
 
-    @EventMapping
-    protected ReplyMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event){
-        return new ReplyMessage(event.getReplyToken(), event.getMessage().getText());
-    }
+    
 
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
@@ -51,14 +48,9 @@ public class EchoApplication {
 
         TextMessageContent userMessage = event.getMessage();
         String resMessage = userMessage.getText();
-        //String messageType = userMessage.getType();
-        //if(messageType == "text"){
-            //final String originalMessageText = event.getMessage().getText();
-            //final String originalMessageText = "テストようです";
-            //resMessage = "あいうえお";
-        //}else if(messageType == "image"){
-            //resMessage = "画像ですね";
-        //}
+
+        //final String originalMessageText = event.getMessage().getText();
+        //final String originalMessageText = "テストようです";
         //return new TextMessage(originalMessageText);
         return new TextMessage(resMessage);
     }
