@@ -40,20 +40,25 @@ public class EchoApplication {
         SpringApplication.run(EchoApplication.class, args);
     }
 
+    @Override
+    protected ReplyMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event){
+        return new ReplyMessage(event.getReplyToken(), event.getMessage().getType());
+    }
+
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         log.info("event: " + event);
 
         TextMessageContent userMessage = event.getMessage();
         String resMessage = userMessage.getText();
-        String messageType = userMessage.getType();
-        if(messageType == "text"){
+        //String messageType = userMessage.getType();
+        //if(messageType == "text"){
             //final String originalMessageText = event.getMessage().getText();
             //final String originalMessageText = "テストようです";
-            resMessage = "あいうえお";
-        }else if(messageType == "image"){
-            resMessage = "画像ですね";
-        }
+            //resMessage = "あいうえお";
+        //}else if(messageType == "image"){
+            //resMessage = "画像ですね";
+        //}
         //return new TextMessage(originalMessageText);
         return new TextMessage(resMessage);
     }
