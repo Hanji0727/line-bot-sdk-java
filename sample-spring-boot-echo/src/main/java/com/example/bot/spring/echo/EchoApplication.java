@@ -42,7 +42,7 @@ public class EchoApplication {
 
     @Override
     protected ReplyMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event){
-        return new ReplyMessage(event.getReplyToken(), event.getMessage().getType());
+        return new ReplyMessage(event.getReplyToken(), event.getMessage().getText());
     }
 
     @EventMapping
