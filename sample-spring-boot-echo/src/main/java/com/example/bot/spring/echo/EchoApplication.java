@@ -46,10 +46,13 @@ public class EchoApplication {
 
         TextMessageContent userMessage = event.getMessage();
         String resMessage = userMessage.getText();
-        if(resMessage == "あ"){
+        String messageType = userMessage.getType();
+        if(messageType == "text"){
             //final String originalMessageText = event.getMessage().getText();
             //final String originalMessageText = "テストようです";
             resMessage = "あいうえお";
+        }else if(messageType == "image"){
+            resMessage = "画像ですね";
         }
         //return new TextMessage(originalMessageText);
         return new TextMessage(resMessage);
